@@ -33,6 +33,8 @@ public class AreaEntitiy {
 	private Integer areaid;
 	@Column(name="nombre_area",nullable = false, length = 45)
 	private String nomarea;
+	
+	
 	public Integer getAreaid() {
 		return areaid;
 	}

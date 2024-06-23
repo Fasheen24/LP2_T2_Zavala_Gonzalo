@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="container">
-        <h2>Lista de Empleados</h2>
+
 
 		<a th:href="@{/registrar_empleado}" class="btn btn-primary">Registrar Empleado</a>
         <!-- Tabla de usuarios -->
@@ -33,7 +33,7 @@
                     <td th:text="${user.fechemp}"></td>
                     <td th:text="${user.direc}"></td>
                     <td th:text="${user.correo}"></td>
-                    <td th:text="${empleado.areaEntity.nomarea}"></td>
+                    <td th:text="${empleado.areaEntity != null ? empleado.areaEntity.areaid : ''}"></td>	
                     <td>
                     <a th:href="@{/detalle_usuario/{id}(id=${user.usuarioId})}" class="btn btn-info">Ver</a> |
                     <a th:href="@{/editar_usuario/{id}(id=${user.usuarioId})}" class="btn btn-warning">Editar</a>  
