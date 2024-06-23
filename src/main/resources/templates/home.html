@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD con Thymeleaf y Bootstrap</title>
+    <!-- Estilos de Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Lista de Empleados</h2>
+
+        <a th:href="@{/registrar_empleado}" class="btn btn-primary">Registrar Empleado</a>
+        <!-- Tabla de usuarios -->
+        <table class="table mt-4">
+            <thead>
+                <tr>
+                    <th>Dni</th>
+                    <th>Nombre empleado</th>
+                    <th>Apellido empleado</th>
+                    <th>Fecha Nacimiento</th>
+                    <th>Direccion</th>
+                    <th>Correo</th>
+                    <th>Área</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="user : ${lista_empleado}">
+                    <td th:text="${user.dni}"></td>
+                    <td th:text="${user.nomemp}"></td>
+                    <td th:text="${user.apeemp}"></td>
+                    <td th:text="${#dates.format(user.fechemp, 'yyyy/MM/dd')}"></td>
+                    <td th:text="${user.direc}"></td>
+                    <td th:text="${user.correo}"></td>
+                    <td th:text="${user.areaEntity != null ? user.areaEntity.areaid : ''}"></td>
+                    <td>
+                        <a th:href="@{/actualizar_empleado/{dni}(dni=${user.dni})}" class="btn btn-warning">Actualizar</a> |
+                        <a th:href="@{/eliminar_empleado/{dni}(dni=${user.dni})}" class="btn btn-danger"
+                           onclick="return confirm('¿Está seguro que desea eliminar este empleado?');">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Scripts de Bootstrap y jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
