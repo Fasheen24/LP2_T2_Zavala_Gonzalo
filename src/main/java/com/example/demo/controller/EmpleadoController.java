@@ -39,9 +39,15 @@ public class EmpleadoController {
 
     @PostMapping("/registrar_empleado")
     public String registrarEmpleado(@ModelAttribute EmpleadoEntity empleado, Model model) {
-        empleadoRepository.save(empleado);
-        return "redirect:/";
-    }
+        try {
+            empleadoRepository.save(empleado);
+            return "redirect:/";
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("error_message", "Error al intentar registrar el empleado");
+            return "registrar_empleado";
+        }
+        }
     @GetMapping("/actualizar_empleado/{dni}")
     public String showActualizarEmpleadoForm(@PathVariable("dni") String dni, Model model) {
         EmpleadoEntity empleado = empleadoRepository.findByDni(dni);
@@ -64,10 +70,14 @@ public class EmpleadoController {
             empleado.setFechemp(empleadoActualizado.getFechemp());
             empleado.setDirec(empleadoActualizado.getDirec());
             empleado.setCorreo(empleadoActualizado.getCorreo());
-            empleado.setAreaEntity(empleadoActualizado.getAreaEntity());
             empleadoRepository.save(empleado);
         }
         return "redirect:/";
     }
-	
+    @GetMapping("/eliminar_empleado/{dni}")
+    public String eliminarEmpleado(@PathVariable("dni") String dni, Model model) {
+        empleadoRepository.deleteById(dni);
+        return "redirect:/";
+    }
+    
 }

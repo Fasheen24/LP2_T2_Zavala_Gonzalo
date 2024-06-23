@@ -39,14 +39,15 @@ public class EmpleadoEntity {
 
 
 	 @Id
-	    @Column(name = "dni_empleado", nullable = false, unique = true, length = 8)
-	    private String dni;
+	@Column(name = "dni_empleado", nullable = false, unique = true, length = 8)
+	private String dni;
 	@Column(name="nombre_empleado",nullable = false, length = 45)
 	private String nomemp;
 	@Column(name="apellido_empleado",nullable = false, length = 45)
 	private String apeemp;
-	@Column(name="fecha_nacimiento",nullable = false, length = 45)
+	
 	@Temporal(TemporalType.DATE)
+	@Column(name="fecha_nacimiento",nullable = false, length = 45)	
 	private Date fechemp;
 	@Column(name="direccion", nullable = false, length = 45)
 	private String direc;

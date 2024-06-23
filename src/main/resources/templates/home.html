@@ -9,9 +9,9 @@
 </head>
 <body>
     <div class="container">
+        <h2>Lista de Empleados</h2>
 
-
-		<a th:href="@{/registrar_empleado}" class="btn btn-primary">Registrar Empleado</a>
+        <a th:href="@{/registrar_empleado}" class="btn btn-primary">Registrar Empleado</a>
         <!-- Tabla de usuarios -->
         <table class="table mt-4">
             <thead>
@@ -23,6 +23,7 @@
                     <th>Direccion</th>
                     <th>Correo</th>
                     <th>Área</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,16 +31,17 @@
                     <td th:text="${user.dni}"></td>
                     <td th:text="${user.nomemp}"></td>
                     <td th:text="${user.apeemp}"></td>
-                    <td th:text="${#dates.format(empleado.fechemp, 'dd/MM/yyyy')}"></td>
+                    <td th:text="${#dates.format(user.fechemp, 'yyyy/MM/dd')}"></td>
                     <td th:text="${user.direc}"></td>
                     <td th:text="${user.correo}"></td>
-                    <td th:text="${empleado.areaEntity != null ? empleado.areaEntity.areaid : ''}"></td>	
+                    <td th:text="${user.areaEntity != null ? user.areaEntity.areaid : ''}"></td>
                     <td>
-                    <a th:href="@{/detalle_usuario/{id}(id=${user.usuarioId})}" class="btn btn-info">Ver</a> |
-                    <a th:href="@{/editar_usuario/{id}(id=${user.usuarioId})}" class="btn btn-warning">Editar</a>  
-                    <td>
-                	<a th:href="@{/actualizar_empleado/{dni}(dni=${empleado.dni})}" class="btn btn-warning">Actualizar</a>
-            		</td>
+                        <a th:href="@{/detalle_usuario/{dni}(dni=${user.dni})}" class="btn btn-info">Ver</a> |
+                        <a th:href="@{/editar_usuario/{dni}(dni=${user.dni})}" class="btn btn-warning">Editar</a> |
+                        <a th:href="@{/actualizar_empleado/{dni}(dni=${user.dni})}" class="btn btn-warning">Actualizar</a> |
+                        <a th:href="@{/eliminar_empleado/{dni}(dni=${user.dni})}" class="btn btn-danger"
+                           onclick="return confirm('¿Está seguro que desea eliminar este empleado?');">Eliminar</a>
+                    </td>
                 </tr>
             </tbody>
         </table>
