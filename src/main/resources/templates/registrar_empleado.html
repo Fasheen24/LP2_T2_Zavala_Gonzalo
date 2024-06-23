@@ -9,9 +9,10 @@
 </head>
 <body>
     <div class="container">
-    <div th:if="${error_message}" class="alert alert-danger">
-        <p th:text="${error_message}"></p>
-    </div>         
+      <h2>Registro de Empleado</h2>
+    <div th:if="${errorMessage}" class="alert alert-warning" role="alert">
+        <span th:text="${errorMessage}"></span>
+    </div>       
         <form th:action="@{/registrar_empleado}" th:object="${empleado}" method="post">
             <div class="form-group">
                 <label for="dni">DNI:</label>

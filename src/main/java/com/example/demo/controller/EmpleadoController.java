@@ -29,14 +29,12 @@ public class EmpleadoController {
         model.addAttribute("lista_empleado", listaEmpleado);
         return "home";
     }
-
     @GetMapping("/registrar_empleado")
     public String showEmpleadoForm(Model model) {
         model.addAttribute("empleado", new EmpleadoEntity());
         model.addAttribute("lista_areas", areaRepository.findAll());
         return "registrar_empleado";
     }
-
     @PostMapping("/registrar_empleado")
     public String registrarEmpleado(@ModelAttribute EmpleadoEntity empleado, Model model) {
         try {
@@ -45,9 +43,11 @@ public class EmpleadoController {
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("error_message", "Error al intentar registrar el empleado");
+            model.addAttribute("empleado", empleado); // Mantener los datos ingresados en el formulario
+            model.addAttribute("lista_areas", areaRepository.findAll());
             return "registrar_empleado";
         }
-        }
+    }
     @GetMapping("/actualizar_empleado/{dni}")
     public String showActualizarEmpleadoForm(@PathVariable("dni") String dni, Model model) {
         EmpleadoEntity empleado = empleadoRepository.findByDni(dni);
@@ -81,3 +81,4 @@ public class EmpleadoController {
     }
     
 }
+
