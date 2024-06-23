@@ -3,6 +3,7 @@ package com.example.demo.entity;
 import java.util.Date;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 
@@ -18,13 +19,28 @@ import lombok.ToString;
 
 @Entity
 @Table(name="tb_empleado")
-@Getter
-@Setter
-@ToString
-@AllArgsConstructor
-@NoArgsConstructor
 public class EmpleadoEntity {
 	
+	
+	
+	public EmpleadoEntity() {
+		super();
+	}
+
+
+	public EmpleadoEntity(String dni, String nomemp, String apeemp, Date fechemp, String direc, String correo,
+			AreaEntitiy areaEntity) {
+		super();
+		this.dni = dni;
+		this.nomemp = nomemp;
+		this.apeemp = apeemp;
+		this.fechemp = fechemp;
+		this.direc = direc;
+		this.correo = correo;
+		this.areaEntity = areaEntity;
+	}
+
+
 	@Id
 	@Column(name = "dni_empleado", nullable = false, unique =  true, length = 8 )
 	private String dni;
@@ -41,9 +57,82 @@ public class EmpleadoEntity {
 	private String correo;
 	
 	
-	@ManyToOne
+	@ManyToOne(fetch  = FetchType.LAZY)
 	@JoinColumn(name = "area_id", nullable = false)
-	private AreaEntitiy areaEntity;	
+	private AreaEntitiy areaEntity;
+
+
+	public String getDni() {
+		return dni;
+	}
+
+
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+
+
+	public String getNomemp() {
+		return nomemp;
+	}
+
+
+	public void setNomemp(String nomemp) {
+		this.nomemp = nomemp;
+	}
+
+
+	public String getApeemp() {
+		return apeemp;
+	}
+
+
+	public void setApeemp(String apeemp) {
+		this.apeemp = apeemp;
+	}
+
+
+	public Date getFechemp() {
+		return fechemp;
+	}
+
+
+	public void setFechemp(Date fechemp) {
+		this.fechemp = fechemp;
+	}
+
+
+	public String getDirec() {
+		return direc;
+	}
+
+
+	public void setDirec(String direc) {
+		this.direc = direc;
+	}
+
+
+	public String getCorreo() {
+		return correo;
+	}
+
+
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
+
+
+	public AreaEntitiy getAreaEntity() {
+		return areaEntity;
+	}
+
+
+	public void setAreaEntity(AreaEntitiy areaEntity) {
+		this.areaEntity = areaEntity;
+	}
+
+
+
 
 
 

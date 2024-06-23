@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Empleado</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h2>Registro de Empleado</h2>
+
+    <form th:action="@{/registrar_empleado}" th:object="${dni}" method="post">
+         <div class="form-group">
+            <label for="dni">Dni:</label>
+            <input type="text" class="form-control" id="dni" th:field="*{dni}" placeholder="Ingrese su Dni" required>
+        </div>
+        <div class="form-group">
+            <label for="nomemp">Nombre Empleado:</label>
+            <input type="text" class="form-control" id="nomemp" th:field="*{nomemp}" placeholder="Ingrese su nombre" required>
+        </div>
+         <div class="form-group">
+            <label for="apeemp">Apellido Empleado:</label>
+            <input type="text" class="form-control" id="apeemp" th:field="*{apeemp}" placeholder="Ingrese su Apellido" required>
+        </div>
+        <div class="form-group">
+    		<label for="fechemp">Fecha de Nacimiento:</label>
+    		<input type="date" class="form-control" id="fechemp" th:field="*{fechemp}" required>
+		</div>
+		 <div class="form-group">
+            <label for="direc">Dirección:</label>
+            <input type="text" class="form-control" id="direc" th:field="*{direc}" placeholder="Ingrese su Direccion" required>
+        </div>
+        <div class="form-group">
+            <label for="correo">Correo electrónico:</label>
+            <input type="email" class="form-control" id="correo" th:field="*{correo}" placeholder="Ingrese su correo electrónico" required>
+        </div>
+         <div class="form-group">
+            <label for="areaid">ID de Área:</label>
+            <input type="text" class="form-control" id="areaid" th:field="*{areaEntity.areaid}" placeholder="Ingrese el ID del área" required>
+        </div>
+        <a th:href="@{/}" class="btn btn-secondary">Regresar</a>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+</div>
+</body>
+</html>
