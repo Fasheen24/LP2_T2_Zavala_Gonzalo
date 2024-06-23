@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <h2 th:if="${empleado.dni == null}">Registro de Empleado</h2>
-        <h2 th:if="${empleado.dni != null}">Editar Empleado</h2>
+        <h2 th:if="${empleado.dni != null}">Editar Empleado</h2>           
         <form th:action="@{/registrar_empleado}" th:object="${empleado}" method="post">
             <div class="form-group">
                 <label for="dni">DNI:</label>

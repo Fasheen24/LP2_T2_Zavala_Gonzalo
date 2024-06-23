@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Áreas</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+<form th:action="@{/buscar_area}" method="get" class="form-inline mb-3">
+        <div class="form-group mr-2">
+            <label for="areaid" class="sr-only">ID de Área</label>
+            <input type="text" class="form-control" id="areaid" name="areaid" placeholder="ID de Área">
+        </div>
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </form>
+    <h2>Lista de Áreas</h2>
+
+    <table class="table mt-4">
+        <thead>
+            <tr>
+                <th>ID de Área</th>
+                <th>Nombre de Área</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="area : ${lista_areas}">
+                <td th:text="${area.areaid}"></td>
+                <td th:text="${area.nomarea}"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

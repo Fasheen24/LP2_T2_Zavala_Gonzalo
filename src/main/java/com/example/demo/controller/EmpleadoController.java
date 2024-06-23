@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.entity.EmpleadoEntity;
@@ -20,6 +21,8 @@ public class EmpleadoController {
 	private EmpleadoRepository empleadoRepository;
 	@Autowired
     private AreaRepository areaRepository;
+	
+	
     @GetMapping("/")
     public String home(Model model) {
         List<EmpleadoEntity> listaEmpleado = empleadoRepository.findAll();
@@ -39,6 +42,32 @@ public class EmpleadoController {
         empleadoRepository.save(empleado);
         return "redirect:/";
     }
-	
+    @GetMapping("/actualizar_empleado/{dni}")
+    public String showActualizarEmpleadoForm(@PathVariable("dni") String dni, Model model) {
+        EmpleadoEntity empleado = empleadoRepository.findByDni(dni);
+        if (empleado != null) {
+            model.addAttribute("empleado", empleado);
+            model.addAttribute("lista_areas", areaRepository.findAll());
+            return "actualizar_empleado";
+        } else {
+            return "redirect:/";
+        }
+    }
+    @PostMapping("/actualizar_empleado/{dni}")
+    public String actualizarEmpleado(@PathVariable("dni") String dni,
+                                     @ModelAttribute EmpleadoEntity empleadoActualizado,
+                                     Model model) {
+        EmpleadoEntity empleado = empleadoRepository.findByDni(dni);
+        if (empleado != null) {
+            empleado.setNomemp(empleadoActualizado.getNomemp());
+            empleado.setApeemp(empleadoActualizado.getApeemp());
+            empleado.setFechemp(empleadoActualizado.getFechemp());
+            empleado.setDirec(empleadoActualizado.getDirec());
+            empleado.setCorreo(empleadoActualizado.getCorreo());
+            empleado.setAreaEntity(empleadoActualizado.getAreaEntity());
+            empleadoRepository.save(empleado);
+        }
+        return "redirect:/";
+    }
 	
 }

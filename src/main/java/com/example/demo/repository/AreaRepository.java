@@ -6,7 +6,8 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.entity.AreaEntitiy;
 
+
 @Repository
 public interface AreaRepository extends JpaRepository<AreaEntitiy, Integer>{
-
+	AreaEntitiy findByAreaid(Integer areaid);
 }
